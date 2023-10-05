@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Produtos</title>
+    <script>
+        var itensA = [];
+        var itensB = [];
+        var i = 0;
+        var k = 0;
+        function inserir(){
+            var texto = '';
+            var tipo = '';
+            var texto = document.getElementById("produtos").value;
+            tipo = document.getElementById("tipo").value;
+            if (produtos != "" && tipo == "tipo1"){
+                itensA[i] = texto;
+                i++;
+                listaPereciveis.innerHTML = `${"Alimentos Perecíveis: " + i}`;
+                listaResultados.innerHTML = `${"Resultados:"}`
+                document.getElementById('produtos').value='';
+                document.getElementById('tipo').value='--';
+                document.getElementById('produtos').focus();
+            } else if (produtos != "" && tipo == "tipo2"){
+                itensB[k] = texto;
+                k++;
+                listaNaoPereciveis.innerHTML = `${"Alimentos Não Perecíveis: " + k}`
+                listaResultados.innerHTML = `${"Resultados:"}`
+                document.getElementById('produtos').value='';
+                document.getElementById('tipo').value='--';
+                document.getElementById('produtos').focus();
+            } else {
+                window.alert("Preenchimento incompleto. O alimento não foi Adicionado.")
+                document.getElementById('produtos').value='';
+                document.getElementById('tipo').value='--';
+                document.getElementById('produtos').focus();
+            }
+        }
+        function mostrarProdutos(){
+            var j = 0;
+            var m = 0;
+            listaPereciveis.innerHTML = "Alimentos Perecíveis: " + i;
+            listaNaoPereciveis.innerHTML = "Alimentos Não Perecíveis: " + k;
+            while(j <= (i - 1)){
+                listaPereciveis.innerHTML = listaPereciveis.innerHTML + "<br>" + String(itensA[j]);
+                // document.getElementById('produtos').value='';
+                j++;
+            }
+            while(m <= (k - 1)){
+                listaNaoPereciveis.innerHTML = listaNaoPereciveis.innerHTML + "<br>" + String(itensB[m]) + "<br>";
+                // document.getElementById('produtos').value='';
+                m++;
+            }
+        }
+        function mostrarResultados(){
+            if(i>k){
+                if (k == 0){
+                listaResultados.innerHTML = `${"Resultados: <br>A lista que possui mais registros é o de Alimentos Perecíveis; <br>Lista de Alimentos Não Perecíveis está vazia."}`
+                } else {
+                    listaResultados.innerHTML = `${"Resultados: <br>A lista que possui mais registros é o de Alimentos Perecíveis."}`
+                };
+            } else if(i<k){
+                if (i == 0){
+                    listaResultados.innerHTML = `${"Resultados: <br>A lista que possui mais registros é o de Alimentos Não Perecíveis; <br>Lista de Alimentos Perecíveis está vazia."}`;
+                } else {
+                    listaResultados.innerHTML = `${"Resultados: <br>A lista que possui mais registros é o de Alimentos Não Perecíveis."}`;
+                }
+            } else if(i==k){
+                if (i != 0 && k != 0){
+                    listaResultados.innerHTML = `${"Resultados: <br>Listas com a mesma quantidade de informações registradas."}`;
+                } else {
+                    listaResultados.innerHTML = `${"Resultados: <br>Listas vazias."}`
+                }
+        }
+    }
+    </script>
+</head>
+<body>
+    <h2 style="text-align: center;">Lista de Produtos</h2>
+    <p>
+        Nome do Produto:
+        <input type="text" id="produtos">
+    </p>
+    <p>
+        <label>Tipo do Produto</label>
+        <select id="tipo">
+            <option value="--">--</option>
+            <option value="tipo1">Perecível</option>
+            <option value="tipo2">Não Perecível</option>
+        </select>
+    </p>
+    <p>
+        <button id="botao1" type="submit" onclick="inserir()">Inserir Produto</button><br>
+    </p>
+    <p>
+        <button id="botao2" type="submit" onclick="mostrarProdutos()">Mostrar Produtos</button>
+    </p>
+    <p>
+        <button id="botao3" type="submit" onclick="mostrarResultados()">Mostrar Resultados</button> 
+
+    </p>
+    <hr>
+    <div id="listaPereciveis">Alimentos Perecíveis:</div>
+    <div id="listaNaoPereciveis">Alimentos Não Perecíveis:</div> 
+    <div id="listaResultados">Resultados:</div>
+</body>
+<footer>
+    <h4 style="text-align: center;">Aluno: Vaulécio Vital da Silva</h4>
+</footer>
+</html>
